@@ -47,7 +47,7 @@ function validatePost(req, res, next) {
       message:"missing required text filed"
     })
   }else{
-    res.text = text;
+    req.text = text;
     next()
   }
 } 
