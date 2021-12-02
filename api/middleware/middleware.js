@@ -1,7 +1,7 @@
 const User = require('../users/users-model'); 
 
- function logger(req, res, next) {
-  // DO YOUR MAGIC
+
+function logger(req, res, next) {
   const timestamp = new Date().toLocaleString();
   const method = req.method;
   const url = req.originalUrl
@@ -39,7 +39,6 @@ function validateUser(req, res, next) {
     next()
   }
 }
-
 function validatePost(req, res, next) {
   const {text} = req.body
   if (!text){
@@ -51,8 +50,6 @@ function validatePost(req, res, next) {
     next()
   }
 } 
-
-// do not forget to expose these functions to other modules
 module.exports = {
   logger,
   validateUserId,
