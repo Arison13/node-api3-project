@@ -4,7 +4,7 @@ const User = require('../users/users-model');
   // DO YOUR MAGIC
   const timestamp = new Date().toLocaleString();
   const method = req.method;
-  const url = req.originalurl
+  const url = req.originalUrl
   console.log(`at [${timestamp}] method: ${method} to ${url}`);
   next();
 }
@@ -29,13 +29,13 @@ async function validateUserId(req, res, next) {
 }
 
 function validateUser(req, res, next) {
-  const {name} = req.body
+  const { name } = req.body
   if (!name){
     res.status(400).json({
       message:"missing required name filed"
     })
   }else{
-    res.name = name;
+    req.name = name;
     next()
   }
 }

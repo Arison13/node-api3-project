@@ -9,11 +9,9 @@ router.get('/', (req, res, next) => {
   // RETURN AN ARRAY WITH ALL THE USERS
   User.get()
   .then(users => {
-    res.status(200).json(users)
+    res.json(users)
   })
-  .catch(
-    next()//the error handling goes here
-  )
+  .catch(next)
 });
 
 router.get('/:id', validateUserId, (req, res) => {
@@ -23,9 +21,14 @@ router.get('/:id', validateUserId, (req, res) => {
 });
 
 
-router.post('/', validateUser, (req, res) => {
+router.post('/', validateUser, (req, res, next) => {
   // RETURN THE NEWLY CREATED USER OBJECT
   // this needs a middleware to check that the request body is valid
+  User.insert({ name: req.name})
+    .then(newUser => {
+      res.status(201).json(newUser);
+    })
+    .catch(next)
 });
 
 router.put('/:id', validateUserId, validateUser, (req, res) => {
